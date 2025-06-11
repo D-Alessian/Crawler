@@ -1,24 +1,5 @@
-# README
+# Rails Crawler
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This project is a rails based web crawler that uses a website to add the links it needs to track, as well as other configuration options. 
+This is meant to make it easy for your team to add websites it should track, with little technical knowledge.  
+It will send a daily e-mail to a configured address detailing the changes made during that day.
