@@ -33,4 +33,8 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+
 /.idea/
+/ruby-sdk.iml
+/db/schema.rb

@@ -1,0 +1,11 @@
+Daily Crawling Report
+
+Sites updated on <%= l Date.current, format: :long %>
+
+<% if @sites.any? %>
+  <% @sites.each do |site| %>
+    * <%= site.name %>  (<%= site.url %>)  – <%= l site.updated_at, format: :short %>
+  <% end %>
+<% else %>
+  No updates today.
+<% end %>

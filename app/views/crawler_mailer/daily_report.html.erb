@@ -1,0 +1,16 @@
+<h1>Daily Crawling Report</h1>
+
+<h2>Sites updated on <%= l Date.current, format: :long %></h2>
+
+<% if @sites.any? %>
+  <ul>
+    <% @sites.each do |site| %>
+      <li>
+        <%= link_to site.name, site.url %>
+        — <%= l site.updated_at, format: :short %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No updates today 🎉</p>
+<% end %>

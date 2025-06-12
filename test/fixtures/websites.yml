@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: MyString
+  body: MyText
+  sha: MyString
+  last_change: 2025-06-11 23:35:09
+
+two:
+  url: MyString
+  body: MyText
+  sha: MyString
+  last_change: 2025-06-11 23:35:09
