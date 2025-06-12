@@ -6,11 +6,10 @@
   <ul>
     <% @sites.each do |site| %>
       <li>
-        <%= link_to site.name, site.url %>
-        — <%= l site.updated_at, format: :short %>
+        <%= site.url %>
       </li>
     <% end %>
   </ul>
 <% else %>
-  <p>No updates today 🎉</p>
+  <p>No updates today</p>
 <% end %>

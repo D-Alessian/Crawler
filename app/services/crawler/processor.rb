@@ -2,8 +2,10 @@ module Crawler
   class Processor
     def self.compare_all
       Website.all.each do |website|
+        puts "Evaluating #{website.url}"
         new_data = Fetcher.fetch(website.url)
-        if same_sha?(website, new_data[:digest])
+        puts new_data[:digest]
+        unless same_sha?(website, new_data)
           update_website(website, new_data)
         end
       end
@@ -11,11 +13,14 @@ module Crawler
 
     private
 
-    def update_website(website, new_data)
-      website.body = new_data[:body]
-      website.digest = new_data[:digest]
-      website.last_change = DateTime.now
-      website.save
+    def self.update_website(website, new_data)
+      puts "updating #{website.url}"
+      new_attributes = {
+        body:        new_data[:body],
+        digest:      new_data[:digest],
+        last_change: Time.zone.now
+      }
+      website.update!(new_attributes)
     end
 
     def self.same_sha?(old_website, new_website)

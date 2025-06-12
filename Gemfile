@@ -68,3 +68,5 @@ end
 
 gem 'nokogiri'
 gem 'open-uri'
+gem 'whenever'
+gem 'letter_opener', group: :development

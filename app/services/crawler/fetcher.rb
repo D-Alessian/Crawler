@@ -10,7 +10,7 @@ module Crawler
 
     private
 
-    def fetch_body(url)
+    def self.fetch_body(url)
       URI.parse(url).read
     end
   end
