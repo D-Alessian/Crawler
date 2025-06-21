@@ -1,0 +1,53 @@
+<h1>Track a new website</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <%= form_with(model: @website, local: true) do |form| %>
+                <% if @website.errors.any? %>
+                    <div id="error_explanation">
+                        <h2><%= pluralize(@website.errors.count, "error") %> prohibited this website from being saved:</h2>
+                        <ul>
+                            <% @website.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                <% end %>
+
+                <div class="form-group">
+                    <%= form.label :name %>
+                    <%= form.text_field :name, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= form.label :url %>
+                    <%= form.text_field :url, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= form.label :country %>
+                    <%= form.text_field :country, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= form.label :website_type %>
+                    <%= form.text_field :website_type, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= form.label :size %>
+                    <%= form.text_field :size, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= form.label :status %>
+                    <%= form.text_field :status, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= form.label :start_date %>
+                    <%= form.date_select :start_date, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= form.submit 'Create Website', class: 'btn btn-primary' %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+<%= link_to 'Back to Websites', websites_path, class: 'btn btn-secondary' %>

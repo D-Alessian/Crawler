@@ -1,5 +1,5 @@
 class CrawlerMailer < ApplicationMailer
-  default from: ENV["CRAWLER_EMAIL"]
+  default from: CrawlerConfig.sender_email
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #

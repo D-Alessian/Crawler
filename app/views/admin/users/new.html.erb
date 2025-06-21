@@ -1,0 +1,11 @@
+<h1>Creat a new user</h1>
+<%= form_with model: [:admin, @user], local: true do |f| %>
+    <%= f.text_field :first_name, placeholder: 'First Name' %>
+    <%= f.text_field :last_name, placeholder: 'Last Name' %>
+    <%= f.email_field :email, placeholder: 'Email' %>
+    <%= f.password_field :password, placeholder: 'Password' %>
+    <%= f.password_field :password_confirmation, placeholder: 'Password Confirmation' %>
+    <%= f.select :role, User.roles.keys.map { |r| [r.humanize, r] } %>
+    <%= f.submit %>
+<% end %>
+<%= link_to 'Back to Users', admin_users_path, class: 'btn btn-secondary' %>

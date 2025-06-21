@@ -70,3 +70,11 @@ gem 'nokogiri'
 gem 'open-uri'
 gem 'whenever'
 gem 'letter_opener', group: :development
+
+gem 'pundit'
+gem 'devise'
+
+gem 'bootstrap', '~> 5.3.1'
+gem 'sassc-rails', '~> 2.1'
+gem 'font-awesome-sass', '~> 6.5.2'
+gem 'simple_form', '~> 5.1'

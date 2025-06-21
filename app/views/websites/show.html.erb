@@ -1,0 +1,43 @@
+<h1>Info for <%= @website.name %></h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td><%= @website.name %></td>
+                    </tr>
+                    <tr>
+                        <th>URL</th>
+                        <td><%= @website.url %></td>
+                    </tr>
+                    <tr>
+                        <th>Country</th>
+                        <td><%= @website.country %></td>
+                    </tr>
+                    <tr>
+                        <th>Type</th>
+                        <td><%= @website.website_type %></td>
+                    </tr>
+                    <tr>
+                        <th>Size</th>
+                        <td><%= @website.size %></td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td><%= @website.status %></td>
+                    </tr>
+                    <tr>
+                        <th>Start Date</th>
+                        <td><%= @website.start_date %></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <%= link_to 'Edit', edit_website_path(@website), class: 'btn btn-warning' %> |
+            <%= link_to 'Back to Websites', websites_path, class: 'btn btn-secondary' %>
+
+        </div>
+    </div>
+</div>

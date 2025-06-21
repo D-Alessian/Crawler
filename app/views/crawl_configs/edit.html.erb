@@ -1,0 +1,16 @@
+<h1>Edit Crawler Settings</h1>
+<%= form_with model: @settings, url: crawl_config_path, method: :patch do |f| %>
+  <div>
+    <%= f.label :sender_email %>
+    <%= f.text_field :sender_email %>
+  </div>
+  <div>
+    <%= f.label :regularity_days %>
+    <%= f.number_field :regularity_days %>
+  </div>
+  <div>
+    <%= f.label :time_of_day %>
+    <%= f.number_field :time_of_day, min: 0, max: 23 %>
+  </div>
+  <%= f.submit "Save Settings" %>
+<% end %>
