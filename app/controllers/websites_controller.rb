@@ -8,6 +8,8 @@ class WebsitesController < ApplicationController
 
   def new
     @website = Website.new
+    @website.key_actors.build
+    @website.hyperlinks.build
     authorize @website
   end
 
@@ -40,7 +42,7 @@ class WebsitesController < ApplicationController
   end
 
   def article_params
-    params.require(:website).permit(:url, :country, :website_type, :size, :name, :status, :start_date)
+    params.require(:website).permit(:url, :country, :website_type, :size, :name, :status, :start_date, key_actors_attributes: [:id, :name, :_destroy], hyperlinks_attributes: [:id, :url, :_destroy])
   end
 
   private

@@ -43,6 +43,51 @@
                     <%= form.label :start_date %>
                     <%= form.date_select :start_date, class: 'form-control' %>
                 </div>
+
+                <h3>Key Actors</h3>
+                <div data-controller="preview">
+                    <div id="key-actors">
+                        <%= form.fields_for :key_actors do |actor_form| %>
+                            <%= actor_form.label :name, "Key Actor Name" %>
+                            <%= actor_form.text_field :name, data: { preview_target: "value", action: "input->preview#update" } %>
+                            <%= link_to_remove_association "Remove", actor_form, class: "btn btn-danger" %>
+                        <% end %>
+                        <%= link_to_add_association 'Add Key Actor', 
+                            form, :key_actors, 
+                            class: "btn btn-primary", 
+                                data: { turbo: false, 
+                                        association_insertion_node: '#key-actors', 
+                                        association_insertion_method: :append, 
+                                        action: "click->preview#render" } %>
+                    </div>
+                    <div>
+                        <h4>Key Actors Preview</h4>
+                        <ul data-preview-target="list"></ul>
+                    </div>
+                </div>
+
+                <h3>Hyperlinks</h3>
+                <div data-controller="preview">
+                    <div id="hyperlinks">
+                        <%= form.fields_for :hyperlinks do |link_form| %>
+                            <%= link_form.label :url, "Hyperlink" %>
+                            <%= link_form.text_field :url, data: { preview_target: "value", action: "input->preview#update" } %>
+                            <%= link_to_remove_association "Remove", link_form, class: "btn btn-danger" %>
+                        <% end %>
+                        <%= link_to_add_association 'Add Hyperlink', 
+                            form, :hyperlinks,
+                            class: "btn btn-primary",
+                                data: { turbo: false, 
+                                        association_insertion_node: '#hyperlinks', 
+                                        association_insertion_method: :append, 
+                                        action: "click->preview#renderWithHyperlink" } %>
+                    </div>
+                    <div>
+                        <h4>Hyperlinks Preview</h4>
+                        <ul data-preview-target="list"></ul>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <%= form.submit 'Create Website', class: 'btn btn-primary' %>
                 </div>
@@ -50,4 +95,5 @@
         </div>
     </div>
 </div>
+
 <%= link_to 'Back to Websites', websites_path, class: 'btn btn-secondary' %>

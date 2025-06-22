@@ -78,3 +78,5 @@ gem 'bootstrap', '~> 5.3.1'
 gem 'sassc-rails', '~> 2.1'
 gem 'font-awesome-sass', '~> 6.5.2'
 gem 'simple_form', '~> 5.1'
+
+gem 'cocoon'
