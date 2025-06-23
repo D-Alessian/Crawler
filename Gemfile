@@ -80,5 +80,3 @@ gem 'font-awesome-sass', '~> 6.5.2'
 gem 'simple_form', '~> 5.1'
 
 gem 'cocoon'
-
-gem 'obstruct'
