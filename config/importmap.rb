@@ -9,3 +9,4 @@ pin "jquery" # @3.7.1
 pin "cocoon" # @0.1.1
 pin "bootstrap" # @5.3.7
 pin "@popperjs/core", to: "@popperjs--core.js" # @2.11.8
+pin "cocoon-js" # @0.0.5
