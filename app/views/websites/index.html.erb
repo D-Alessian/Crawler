@@ -7,7 +7,6 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>URL</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -15,7 +14,6 @@
             <% @websites.each do |website| %>
                 <tr>
                 <td><%= website.name %></td>
-                <td><%= website.url %></td>
                 <td>
                     <%= link_to 'Show', website_path(website), class: 'btn btn-info' %>
                     <%= link_to 'Edit', edit_website_path(website), class: 'btn btn-warning' %>
