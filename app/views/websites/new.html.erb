@@ -50,7 +50,7 @@
                         <%= form.fields_for :key_actors do |actor_form| %>
                             <%= actor_form.label :name, "Key Actor Name" %>
                             <%= actor_form.text_field :name, data: { preview_target: "value", action: "input->preview#update" } %>
-                            <%= link_to_remove_association "Remove", actor_form, class: "btn btn-danger" %>
+                            <%= link_to_remove_association "Remove", actor_form, class: "btn btn-danger", data: { turbo:false, action: "click->preview#renderRemove" } %>
                         <% end %>
                         <%= link_to_add_association 'Add Key Actor', 
                             form, :key_actors, 
@@ -58,7 +58,7 @@
                                 data: { turbo: false, 
                                         association_insertion_node: '#key-actors', 
                                         association_insertion_method: :append, 
-                                        action: "click->preview#render" } %>
+                                        action: "click->preview#renderAdd" } %>
                     </div>
                     <div>
                         <h4>Key Actors Preview</h4>
@@ -72,7 +72,7 @@
                         <%= form.fields_for :hyperlinks do |link_form| %>
                             <%= link_form.label :url, "Hyperlink" %>
                             <%= link_form.text_field :url, data: { preview_target: "value", action: "input->preview#update" } %>
-                            <%= link_to_remove_association "Remove", link_form, class: "btn btn-danger" %>
+                            <%= link_to_remove_association "Remove", link_form, class: "btn btn-danger", data: { turbo:false, action: "click->preview#renderRemove" } %>
                         <% end %>
                         <%= link_to_add_association 'Add Hyperlink', 
                             form, :hyperlinks,
@@ -80,7 +80,7 @@
                                 data: { turbo: false, 
                                         association_insertion_node: '#hyperlinks', 
                                         association_insertion_method: :append, 
-                                        action: "click->preview#render" } %>
+                                        action: "click->preview#renderAdd" } %>
                     </div>
                     <div>
                         <h4>Hyperlinks Preview</h4>

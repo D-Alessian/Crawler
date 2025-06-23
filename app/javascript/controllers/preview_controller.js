@@ -12,11 +12,10 @@ export default class extends Controller {
     this.targetValue = this.valueTarget.value
   }
 
-  render () {
+  renderAdd () {
     if (this.isLink(this.targetValue)) {
-      if (!this.isHttp(this.targetValue)) {
+      if (this.isHttp(this.targetValue)) {
         this.listTarget.innerHTML += (`<li><a href="${this.targetValue}">${this.targetValue}</a></li>`)
-
       } else {
         this.listTarget.innerHTML += (`<li><a href="https://${this.targetValue}">${this.targetValue}</a></li>`)
       }
@@ -25,8 +24,21 @@ export default class extends Controller {
     }
   }
 
+  renderRemove () {
+    console.log("Removing with value:", this.targetValue)
+    if (this.isLink(this.targetValue)) {
+      if (this.isHttp(this.targetValue)) {
+        this.listTarget.innerHTML = this.listTarget.innerHTML.replace(`<li><a href="${this.targetValue}">${this.targetValue}</a></li>`, '')
+      } else {
+        this.listTarget.innerHTML = this.listTarget.innerHTML.replace(`<li><a href="https://${this.targetValue}">${this.targetValue}</a></li>`, '')
+      }
+    } else {
+      this.listTarget.innerHTML = this.listTarget.innerHTML.replace(`<li>${this.targetValue}</li>`, '')
+    }
+  }
+
   isLink (stringToCheck) {
-    return stringToCheck.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/)
+    return stringToCheck.match(/(http)?s?(:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/)
   }
    
   isHttp (stringToCheck) {
