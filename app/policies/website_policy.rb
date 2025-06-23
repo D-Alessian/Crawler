@@ -7,6 +7,8 @@ class WebsitePolicy < ApplicationPolicy
   def create?;     user.editor? || user.receiver_editor? || user.admin? || user.super_admin?; end
   def update?;     user.editor? || user.receiver_editor? || user.admin? || user.super_admin?; end
   def destroy?;    user.editor? || user.receiver_editor? || user.admin? || user.super_admin?; end
+  def import_form?; create?; end
+  def import_csv?;  create?; end
   def show?;       index?; end
 
   class Scope < ApplicationPolicy::Scope

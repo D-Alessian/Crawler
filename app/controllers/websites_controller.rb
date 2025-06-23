@@ -41,6 +41,29 @@ class WebsitesController < ApplicationController
     authorize @website
   end
 
+  def import_form
+    @website = Website.new
+    authorize @website
+  end
+
+  def import_csv
+    file = params[:csv_file]
+    if file.nil?
+      redirect_to import_form_websites_path, alert: "Please choose a CSV file."
+      return
+    end
+
+    result = Website.import_from_csv(file.path)
+    if result[:errors].any?
+      redirect_to import_form_websites_path,
+                  alert: "Imported with errors on rows: #{result[:errors].join(', ')}"
+    else
+      redirect_to websites_path,
+                  notice: "Successfully imported #{result[:count]} records."
+    end
+    authorize Website
+  end
+
   def article_params
     params.require(:website).permit(:url, :country, :website_type, :size, :name, :status, :start_date, key_actors_attributes: [:id, :name, :_destroy], hyperlinks_attributes: [:id, :url, :_destroy])
   end

@@ -46,26 +46,26 @@ User.create!(
 
 Website.destroy_all
 Website.create!(
-    url: 'https://example.com',
-    body: '<html><body>Example website content</body></html>',
-    digest: 'example-digest',
     last_change: Time.now,
     country: 'US',
     website_type: 'News',
     size: 'Medium',
     name: 'Example News',
     status: 'Active',
-    start_date: Date.today - 1.year
+    start_date: Date.today - 1.year,
+    projectsPage: 'https://example.com/projects',
+    jobsPage: 'https://example.com/jobs'
+
 )
 Website.create!(
-    url: 'https://another-example.com',
-    body: '<html><body>Another example website content</body></html>',
-    digest: 'another-example-digest',
     last_change: Time.now,
     country: 'UK',
     website_type: 'Blog',
     size: 'Small',
     name: 'Another Example Blog',
     status: 'Active',
-    start_date: Date.today - 6.months
+    start_date: Date.today - 6.months,
+    linkedinPage: 'https://linkedin.com/company/example-blog',
+    projectsPage: 'https://exampleblog.com/projects',
+    newsPage: 'https://exampleblog.com/news'
 )
