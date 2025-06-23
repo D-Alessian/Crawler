@@ -5,6 +5,7 @@ export default class extends Controller {
   targetValue = null
 
   connect () {
+    console.log("PreviewController connected")
   }
 
   update () {
@@ -12,11 +13,24 @@ export default class extends Controller {
   }
 
   render () {
-    this.listTarget.innerHTML += (`<li>${this.targetValue}</li>`)
+    if (this.isLink(this.targetValue)) {
+      if (!this.isHttp(this.targetValue)) {
+        this.listTarget.innerHTML += (`<li><a href="${this.targetValue}">${this.targetValue}</a></li>`)
+
+      } else {
+        this.listTarget.innerHTML += (`<li><a href="https://${this.targetValue}">${this.targetValue}</a></li>`)
+      }
+    } else {
+      this.listTarget.innerHTML += (`<li>${this.targetValue}</li>`)
+    }
   }
 
-  renderWithHyperlink () {
-    this.listTarget.innerHTML += (`<li><a href="https://${this.targetValue}">${this.targetValue}</a></li>`)
+  isLink (stringToCheck) {
+    return stringToCheck.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/)
+  }
+   
+  isHttp (stringToCheck) {
+    return stringToCheck.startsWith("http://") || stringToCheck.startsWith("https://")
   }
 
 }
