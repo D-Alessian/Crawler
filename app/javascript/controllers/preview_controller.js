@@ -5,7 +5,6 @@ export default class extends Controller {
   targetValue = null
 
   connect () {
-    console.log("PreviewController connected")
   }
 
   update () {
@@ -25,7 +24,6 @@ export default class extends Controller {
   }
 
   renderRemove () {
-    console.log("Removing with value:", this.targetValue)
     if (this.isLink(this.targetValue)) {
       if (this.isHttp(this.targetValue)) {
         this.listTarget.innerHTML = this.listTarget.innerHTML.replace(`<li><a href="${this.targetValue}">${this.targetValue}</a></li>`, '')
