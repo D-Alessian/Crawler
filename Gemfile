@@ -82,3 +82,5 @@ gem 'simple_form', '~> 5.1'
 gem 'cocoon'
 
 gem 'postmark-rails'
+
+gem 'dotenv-rails'
