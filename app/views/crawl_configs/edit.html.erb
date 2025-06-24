@@ -1,5 +1,5 @@
 <h1>Edit Crawler Settings</h1>
-<%= form_with model: @settings, url: crawl_config_path, method: :patch do |f| %>
+<%= form_with model: @config, url: crawl_config_path, method: :patch do |f| %>
   <div>
     <%= f.label :sender_email %>
     <%= f.text_field :sender_email %>
