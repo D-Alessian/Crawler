@@ -1,30 +1,38 @@
 module Crawler
   class Processor
+    TYPES = %i[projects jobs news linkedin].freeze
+
     def self.compare_all
       Website.all.each do |website|
-        puts "Evaluating #{website.url}"
-        new_data = Fetcher.fetch(website.url)
-        puts new_data[:digest]
-        unless same_sha?(website, new_data)
-          update_website(website, new_data)
+        puts "Evaluating #{website.name}"
+        SECTIONS.each do |section|
+          url_attr    = "#{section}Page"
+          digest_attr = "#{section}Digest"
+          body_attr   = "#{section}Body"
+
+          url = website.public_send(url_attr)
+          next unless url.present?
+
+          fetched = Fetcher.fetch(url)
+          if website.public_send(digest_attr) != fetched[:digest]
+            update_section(website, section, fetched)
+          end
         end
       end
-    end
 
     private
 
-    def self.update_website(website, new_data)
-      puts "updating #{website.url}"
-      new_attributes = {
-        body:        new_data[:body],
-        digest:      new_data[:digest],
-        last_change: Time.zone.now
-      }
-      website.update!(new_attributes)
-    end
+    def self.update_section(website, section, fetched)
+      url_attr    = "#{section}Page"
+      digest_attr = "#{section}Digest"
+      body_attr   = "#{section}Body"
 
-    def self.same_sha?(old_website, new_website)
-      old_website.digest == new_website[:digest]
+      puts "   → updating #{section} for #{website.url}"
+      website.update!(
+        digest_attr => fetched[:digest],
+        body_attr   => fetched[:body],
+        :last_change => Time.zone.now
+      )
     end
   end
 end
