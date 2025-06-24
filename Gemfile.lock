@@ -145,6 +145,7 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json (2.12.2)
     launchy (3.1.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
@@ -199,6 +200,11 @@ GEM
     orm_adapter (0.5.0)
     pg (1.5.9)
     popper_js (2.11.8)
+    postmark (1.25.1)
+      json
+    postmark-rails (0.22.1)
+      actionmailer (>= 3.0.0)
+      postmark (>= 1.21.3, < 2.0)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -343,6 +349,7 @@ DEPENDENCIES
   nokogiri
   open-uri
   pg (~> 1.1)
+  postmark-rails
   puma (>= 5.0)
   pundit
   rails (~> 7.1.5, >= 7.1.5.1)
