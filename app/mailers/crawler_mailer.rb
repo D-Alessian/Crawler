@@ -5,8 +5,8 @@ class CrawlerMailer < ApplicationMailer
   #
   #   en.crawler_mailer.daily_report.subject
   #
-  def daily_report(sites = Website.changed_today)
-      @sites = sites
-      mail(to: User.where(role: [2, 3, 4]).pluck(:email), subject: 'Daily Crawling Report, Websites Changed: ' + @sites.count.to_s)
+  def daily_report(websites = Website.changed_today)
+      @websites = websites
+      mail(to: User.where(role: [2, 3, 4]).pluck(:email), subject: 'Daily Crawling Report, Websites Changed: ' + @websites.count.to_s)
   end
 end

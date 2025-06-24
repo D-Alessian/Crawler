@@ -9,6 +9,7 @@ class WebsitePolicy < ApplicationPolicy
   def destroy?;    user.editor? || user.receiver_editor? || user.admin? || user.super_admin?; end
   def import_form?; create?; end
   def import_csv?;  create?; end
+  def daily_report?; index?; end
   def show?;       index?; end
 
   class Scope < ApplicationPolicy::Scope

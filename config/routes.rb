@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'crawler_mailer/daily_report'
   devise_for :users
   get 'up' => 'rails/health#show', as: :rails_health_check
 

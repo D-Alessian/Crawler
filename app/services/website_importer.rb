@@ -37,6 +37,7 @@ class WebsiteImporter
         errors << { line: line, messages: site.errors.full_messages }
       end
     end
+    Crawler::Processor.first_seed_all if count > 0
     { count: count, errors: errors }
   end
 end

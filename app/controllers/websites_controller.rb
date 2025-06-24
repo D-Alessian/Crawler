@@ -16,6 +16,7 @@ class WebsitesController < ApplicationController
   def create
     @website = Website.new(article_params)
     if @website.save
+      Crawler::Processor.first_seed(@website)
       redirect_to @website, notice: 'Website was successfully created.'
     else
       flash.now[:alert] = 'Error creating website.'

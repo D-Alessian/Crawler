@@ -1,0 +1,2 @@
+module CrawlerMailerHelper
+end

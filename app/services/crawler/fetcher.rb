@@ -2,7 +2,7 @@ module Crawler
   class Fetcher
     def self.fetch(url)
       body = fetch_body(url)
-      return [nil, nil] unless body
+      return { body: nil, digest: nil } unless body
 
       sha256 = Digest::SHA256.hexdigest(body)
       { body: body, digest: sha256 }
@@ -11,7 +11,12 @@ module Crawler
     private
 
     def self.fetch_body(url)
-      URI.parse(url).read
+      begin
+        return URI.parse(url).read
+      rescue StandardError => e
+        puts "Error fetching #{url}: #{e.message}"
+        nil
+      end
     end
   end
 end

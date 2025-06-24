@@ -2,12 +2,32 @@
 
 <h2>Sites updated on <%= l Date.current, format: :long %></h2>
 
-<% if @sites.any? %>
+<% if @websites.any? %>
   <ul>
-    <% @sites.each do |site| %>
-      <li>
-        <%= site.url %>
-      </li>
+    <% @websites.each do |website| %>
+        <h4>
+          <%= website.name %>
+        </h4>
+      <% if website.projects_last_change && website.projects_last_change.to_date == Date.current %>
+        <li>
+          Projects Page: <a href="<%= website.projectsPage %>"><%= website.projectsPage %></a>
+        </li>
+      <% end %>
+      <% if website.jobs_last_change && website.jobs_last_change.to_date == Date.current %>
+        <li>
+          Jobs Page: <a href="<%= website.jobsPage %>"><%= website.jobsPage %></a>
+        </li>
+      <% end %>
+      <% if website.news_last_change && website.news_last_change.to_date == Date.current %>
+        <li>
+          News Page: <a href="<%= website.newsPage %>"><%= website.newsPage %></a>
+        </li>
+      <% end %>
+      <% if website.linkedin_last_change && website.linkedin_last_change.to_date == Date.current %>
+        <li>
+          LinkedIn Page: <a href="<%= website.linkedinPage %>"><%= website.linkedinPage %></a>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 <% else %>
