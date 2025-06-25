@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resource :crawl_config, only: [:edit, :update]
 
-  resources :websites do 
+  resources :projects do 
     collection do
       get  :import_form
       post :import_csv

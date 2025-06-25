@@ -1,88 +1,72 @@
 module Crawler
   class Processor
-    SECTIONS = %i[projects jobs news linkedin].freeze
 
     def self.compare_all
-      Website.all.each do |website|
-        puts "Evaluating #{website.name}"
-        SECTIONS.each do |section|
-          url_attr    = "#{section}Page"
-          digest_attr = "#{section}Digest"
-          body_attr   = "#{section}Body"
+      Project.includes(:websites).all.each do |project|
+        is_project_changed = false
+        puts "Evaluating #{project.name}"
+        project.websites.each do |site|
+          next unless site.url.present?
 
-          url = website.public_send(url_attr)
-          next unless url.present?
-
-          fetched = Fetcher.fetch(url)
+          fetched = Fetcher.fetch(site.url)
           next unless fetched && fetched[:body].present?
-          
-          if website.public_send(digest_attr) != fetched[:digest]
-            update_section(website, section, fetched)
+          if site.digest != fetched[:digest]
+            update_site(site, site.website_type, fetched)
+            is_project_changed = true
           end
         end
+        change_project(project) if is_project_changed
       end
     end
 
     private
 
-    def self.update_section(website, section, fetched)
-      url_attr    = "#{section}Page"
-      digest_attr = "#{section}Digest"
-      body_attr   = "#{section}Body"
-      date_attr  = "#{section}_last_change"
-
-      puts "   → updating #{section} for #{website.name}"
-      website.update!(
-        digest_attr => fetched[:digest],
-        body_attr   => fetched[:body],
-        :last_change => Time.zone.now,
-        date_attr => Time.zone.now
+    def self.update_site(site, type, fetched)
+      puts "   → updating #{type.to_sym} for #{site.project.name}"
+      site.update!(
+        digest: fetched[:digest],
+        body: fetched[:body],
+        last_change: Date.today
       )
     end
 
+    def self.change_project(project)
+      project.update!(last_change: Time.zone.now)
+    end
+
     def self.first_seed_all
-      Website.all.each do |website|
-        unless website.seeded?
-          puts "Seeding #{website.name} with new body and digest"
-          SECTIONS.each do |section|
-            url_attr    = "#{section}Page"
-            digest_attr = "#{section}Digest"
-            body_attr   = "#{section}Body"
+      Project.all.each do |project|
+        unless project.is_seeded?
+          puts "Seeding #{project.name} with new body and digest"
+          project.websites.each do |site|
+            next unless site.url.present?
 
-            url = website.public_send(url_attr)
-            next unless url.present?
-
-            fetched = Fetcher.fetch(url)
+            fetched = Fetcher.fetch(site.url)
             next unless fetched && fetched[:body].present?
 
-            website.update!(
-              digest_attr => fetched[:digest],
-              body_attr   => fetched[:body],
-              seeded: true,
+            site.update!(
+              digest: fetched[:digest],
+              body: fetched[:body]
             )
+            project.update!(is_seeded: true)
           end
         end
       end
     end
 
-    def self.first_seed(website)
-      puts "Seeding #{website.name} with new body and digest"
-      SECTIONS.each do |section|
-        url_attr    = "#{section}Page"
-        digest_attr = "#{section}Digest"
-        body_attr   = "#{section}Body"
+    def self.first_seed(project)
+      puts "Seeding #{project.name} with new body and digest"
+      project.websites.each do |site|
+        next unless site.url.present?
 
-        url = website.public_send(url_attr)
-        next unless url.present?
-
-        fetched = Fetcher.fetch(url)
+        fetched = Fetcher.fetch(site.url)
         next unless fetched && fetched[:body].present?
 
-        website.update!(
-          digest_attr => fetched[:digest],
-          body_attr   => fetched[:body],
-          seeded: true,
+        site.update!(
+          digest: fetched[:digest],
+          body: fetched[:body]
         )
+        project.update!(is_seeded: true)
       end
     end
 

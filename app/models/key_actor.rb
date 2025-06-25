@@ -1,3 +1,3 @@
 class KeyActor < ApplicationRecord
-  belongs_to :website
+  belongs_to :project
 end

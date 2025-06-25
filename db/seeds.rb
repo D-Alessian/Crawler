@@ -43,29 +43,3 @@ User.create!(
     first_name: 'Visitor',
     last_name: 'User'
 )
-
-Website.destroy_all
-Website.create!(
-    last_change: Time.now,
-    country: 'US',
-    website_type: 'News',
-    size: 'Medium',
-    name: 'Example News',
-    status: 'Active',
-    start_date: Date.today - 1.year,
-    projectsPage: 'https://example.com/projects',
-    jobsPage: 'https://example.com/jobs'
-
-)
-Website.create!(
-    last_change: Time.now,
-    country: 'UK',
-    website_type: 'Blog',
-    size: 'Small',
-    name: 'Another Example Blog',
-    status: 'Active',
-    start_date: Date.today - 6.months,
-    linkedinPage: 'https://linkedin.com/company/example-blog',
-    projectsPage: 'https://exampleblog.com/projects',
-    newsPage: 'https://exampleblog.com/news'
-)
