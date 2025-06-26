@@ -8,7 +8,6 @@ class CrawlConfigsController < ApplicationController
   def update
     authorize @config
     if @config.update(crawl_config_params)
-      CrawlScheduler.reload!(@config)
       redirect_to edit_crawl_config_path, notice: "Config saved."
     else
       render :edit, status: :unprocessable_entity
