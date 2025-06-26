@@ -68,7 +68,6 @@ end
 
 gem 'nokogiri'
 gem 'open-uri'
-gem 'whenever'
 gem 'letter_opener', group: :development
 
 gem 'pundit'
@@ -84,3 +83,7 @@ gem 'cocoon'
 gem 'postmark-rails'
 
 gem 'dotenv-rails'
+
+
+gem 'sidekiq'
+gem 'sidekiq-cron'

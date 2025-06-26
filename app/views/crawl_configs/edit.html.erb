@@ -5,12 +5,12 @@
     <%= f.text_field :sender_email %>
   </div>
   <div>
-    <%= f.label :regularity_days %>
+    <%= f.label :regularity_days, "Run every (days)" %>
     <%= f.number_field :regularity_days %>
   </div>
   <div>
-    <%= f.label :time_of_day %>
-    <%= f.number_field :time_of_day, min: 0, max: 23 %>
+    <%= f.label :time_of_day, "Run at (hour)" %><br>
+    <%= f.time_field :time_of_day, step: 3600 %>
   </div>
   <%= f.submit "Save Settings" %>
 <% end %>
