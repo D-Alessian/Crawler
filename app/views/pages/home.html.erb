@@ -6,8 +6,5 @@
   </p>
   <% if user_signed_in? %>
     <p>Welcome back, <%= "#{current_user.first_name} #{current_user.last_name}" %>!</p>
-    <p>Pages you have access to:</p>
-    <%= link_to 'Projects', projects_path, class: 'btn btn-primary' if policy(Project).index? %>
-    <%= link_to 'Admin control panel', admin_path, class: 'btn btn-primary' if policy(CrawlerConfig).edit? %>
   <% end %>
 </div>
