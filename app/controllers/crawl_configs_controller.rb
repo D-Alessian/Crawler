@@ -18,7 +18,7 @@ class CrawlConfigsController < ApplicationController
 
   def set_config
     @config = CrawlerConfig.first_or_create!(
-      time_of_day: 9, regularity_days: 1, sender_email: "crawler@no-reply.com"
+      time_of_day: '09:00', regularity_days: 1, sender_email: "crawler@no-reply.com"
     )
   end
 
