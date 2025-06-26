@@ -1,0 +1,30 @@
+<h1>Projects</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @projects.each do |project| %>
+                <tr>
+                <td><%= project.name %></td>
+                <td>
+                    <%= link_to 'Show', project_path(project), class: 'btn btn-info' %>
+                    <%= link_to 'Edit', edit_project_path(project), class: 'btn btn-warning' %>
+                    <%= link_to 'Delete', project_path(project), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+                </td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+    
+        <%= link_to 'New Project To Track', new_project_path, class: 'btn btn-primary' %>
+        </div>
+    </div>
+</div>

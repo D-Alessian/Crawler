@@ -1,6 +1,6 @@
 class CrawlerMailerController < ApplicationController
   def daily_report
-    @websites = Website.changed_today
-    authorize @websites
+    @projects = Project.changed_today
+    authorize @projects
   end
 end

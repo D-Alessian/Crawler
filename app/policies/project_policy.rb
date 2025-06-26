@@ -1,4 +1,4 @@
-class WebsitePolicy < ApplicationPolicy
+class ProjectPolicy < ApplicationPolicy
   def index?
     user.editor? || user.receiver_editor? || user.admin? || user.super_admin?;
   end

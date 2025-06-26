@@ -1,13 +1,7 @@
 class Website < ApplicationRecord
-  has_many :key_actors, dependent: :destroy
-  has_many :hyperlinks, dependent: :destroy
+  belongs_to :project
 
-  accepts_nested_attributes_for :key_actors, allow_destroy: true
-  accepts_nested_attributes_for :hyperlinks, allow_destroy: true
+  scope :changed_today, -> { where(last_change: Date.today) }
 
-  scope :changed_today, -> { where(last_change: Time.zone.today.all_day) }
-
-  def self.import_from_csv(path)
-    new_importer = WebsiteImporter.run(path)
-  end
+  enum website_type: { projects: 1, jobs: 2, news: 3, linkedin: 4 }
 end

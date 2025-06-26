@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  website: one
+  project: one
 
 two:
   name: MyString
-  website: two
+  project: two

@@ -2,30 +2,34 @@
 
 <h2>Sites updated on <%= l Date.current, format: :long %></h2>
 
-<% if @websites.any? %>
+<% if @projects.any? %>
   <ul>
-    <% @websites.each do |website| %>
+    <% @projects.each do |project| %>
+      <% projects_page = project.websites.changed_today.find_by(website_type: :projects) %>
+      <% jobs_page = project.websites.changed_today.find_by(website_type: :jobs) %>
+      <% news_page = project.websites.changed_today.find_by(website_type: :news) %>
+      <% linkedin_page = project.websites.changed_today.find_by(website_type: :linkedin) %>
         <h4>
-          <%= website.name %>
+          <%= project.name %>
         </h4>
-      <% if website.projects_last_change && website.projects_last_change.to_date == Date.current %>
+      <% if projects_page.present? %>
         <li>
-          Projects Page: <a href="<%= website.projectsPage %>"><%= website.projectsPage %></a>
+          Projects Page: <a href="<%= projects_page.url %>"><%= projects_page.url %></a>
         </li>
       <% end %>
-      <% if website.jobs_last_change && website.jobs_last_change.to_date == Date.current %>
+      <% if jobs_page.present? %>
         <li>
-          Jobs Page: <a href="<%= website.jobsPage %>"><%= website.jobsPage %></a>
+          Jobs Page: <a href="<%= jobs_page.url %>"><%= jobs_page.url %></a>
         </li>
       <% end %>
-      <% if website.news_last_change && website.news_last_change.to_date == Date.current %>
+      <% if news_page.present? %>
         <li>
-          News Page: <a href="<%= website.newsPage %>"><%= website.newsPage %></a>
+          News Page: <a href="<%= news_page.url %>"><%= news_page.url %></a>
         </li>
       <% end %>
-      <% if website.linkedin_last_change && website.linkedin_last_change.to_date == Date.current %>
+      <% if linkedin_page.present? %>
         <li>
-          LinkedIn Page: <a href="<%= website.linkedinPage %>"><%= website.linkedinPage %></a>
+          LinkedIn Page: <a href="<%= linkedin_page.url %>"><%= linkedin_page.url %></a>
         </li>
       <% end %>
     <% end %>

@@ -1,6 +1,6 @@
-<h1>Import Websites from CSV</h1>
+<h1>Import Projects from CSV</h1>
 
-<%= form_with url: import_csv_websites_path, local: true, multipart: true do |f| %>
+<%= form_with url: import_csv_projects_path, local: true, multipart: true do |f| %>
   <div class="field">
     <%= f.label :csv_file, "CSV File" %><br>
     <%= f.file_field :csv_file, accept: ".csv" %>
@@ -10,4 +10,4 @@
   </div>
 <% end %>
 
-<%= link_to "Back to list", websites_path %>
+<%= link_to "Back to list", projects_path %>

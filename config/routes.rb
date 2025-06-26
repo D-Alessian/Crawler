@@ -9,11 +9,18 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "pages#admin"
     resources :users, only: [:index, :edit, :new, :create, :update, :destroy]
+
+    resources :services, only: [] do
+      collection do
+        post :run_notifier
+        post :run_comparison
+      end
+    end
   end
 
   resource :crawl_config, only: [:edit, :update]
 
-  resources :websites do 
+  resources :projects do 
     collection do
       get  :import_form
       post :import_csv

@@ -1,0 +1,27 @@
+<h1>Info for <%= @project.name %></h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td><%= @project.name %></td>
+                    </tr>
+                    <tr>
+                        <th>Country</th>
+                        <td><%= @project.country %></td>
+                    </tr>
+                    <tr>
+                        <th>Size</th>
+                        <td><%= @project.size %></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-warning' %> |
+            <%= link_to 'Back to Projects', projects_path, class: 'btn btn-secondary' %>
+
+        </div>
+    </div>
+</div>
