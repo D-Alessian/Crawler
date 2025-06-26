@@ -9,6 +9,13 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "pages#admin"
     resources :users, only: [:index, :edit, :new, :create, :update, :destroy]
+
+    resources :services, only: [] do
+      collection do
+        post :run_notifier
+        post :run_comparison
+      end
+    end
   end
 
   resource :crawl_config, only: [:edit, :update]

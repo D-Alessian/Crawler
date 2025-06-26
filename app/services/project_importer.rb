@@ -7,7 +7,7 @@ class ProjectImporter
       when :string  then value == 'N/A' ? nil : value.to_s
       when :integer then Integer(value) rescue nil
       when :boolean then %w[yes y true 1].include?(value.strip.downcase)
-      when :date    then Date.parse(value) rescue nil
+      when :date    then Date.strptime(value, '%m/%d/%Y') rescue nil
       else value
       end
     end
@@ -53,6 +53,7 @@ class ProjectImporter
       end
     end
 
+    Crawler::Processor.first_seed_all if count > 0
     { count: count, errors: errors }
   end
 end

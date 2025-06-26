@@ -1,3 +1,13 @@
 <h1>Admin panel</h1>
 <%= link_to 'Edit Crawler Config', edit_crawl_config_path, class: 'btn btn-secondary' %>
 <%= link_to 'Manage Users', admin_users_path, class: 'btn btn-secondary' %>
+
+<%= button_to 'Run Daily Job with email', run_notifier_admin_services_path,
+            method: :post, 
+            class: 'btn btn-primary', 
+            data: { turbo_confirm: "Are you sure you want to scan all pages and send an email?" } %>
+
+<%= button_to 'Compare All Projects', run_comparison_admin_services_path,
+            method: :post,
+            class: 'btn btn-primary', 
+            data: { turbo_confirm: "Are you sure you want to scan all pages?" } %>

@@ -5,29 +5,29 @@
 <% if @projects.any? %>
   <ul>
     <% @projects.each do |project| %>
-      <% projects_page = project.websites.find_by(website_type: :projects).changed_today if projects_page %>
-      <% jobs_page = project.websites.find_by(website_type: :jobs).changed_today if jobs_page %>
-      <% news_page = project.websites.find_by(website_type: :news).changed_today if news_page %>
-      <% linkedin_page = project.websites.find_by(website_type: :linkedin).changed_today if linkedin_page %>
+      <% projects_page = project.websites.changed_today.find_by(website_type: :projects) %>
+      <% jobs_page = project.websites.changed_today.find_by(website_type: :jobs) %>
+      <% news_page = project.websites.changed_today.find_by(website_type: :news) %>
+      <% linkedin_page = project.websites.changed_today.find_by(website_type: :linkedin) %>
         <h4>
           <%= project.name %>
         </h4>
-      <% if projects_page %>
+      <% if projects_page.present? %>
         <li>
           Projects Page: <a href="<%= projects_page.url %>"><%= projects_page.url %></a>
         </li>
       <% end %>
-      <% if jobs_page %>
+      <% if jobs_page.present? %>
         <li>
           Jobs Page: <a href="<%= jobs_page.url %>"><%= jobs_page.url %></a>
         </li>
       <% end %>
-      <% if news_page %>
+      <% if news_page.present? %>
         <li>
           News Page: <a href="<%= news_page.url %>"><%= news_page.url %></a>
         </li>
       <% end %>
-      <% if linkedin_page %>
+      <% if linkedin_page.present? %>
         <li>
           LinkedIn Page: <a href="<%= linkedin_page.url %>"><%= linkedin_page.url %></a>
         </li>
