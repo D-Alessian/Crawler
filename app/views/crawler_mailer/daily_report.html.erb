@@ -1,37 +1,52 @@
 <h1>Daily Crawling Report</h1>
 
-<h2>Sites updated on <%= l Date.current, format: :long %></h2>
+<h2>Report for <%= l Date.current, format: :long %></h2>
 
-<% if @projects.any? %>
+<% if @projects.any? || @errored_websites.any? %>
+
+  <h3>Projects with Updates</h3>
   <ul>
     <% @projects.each do |project| %>
       <% projects_page = project.websites.changed_today.find_by(website_type: :projects) %>
       <% jobs_page = project.websites.changed_today.find_by(website_type: :jobs) %>
       <% news_page = project.websites.changed_today.find_by(website_type: :news) %>
       <% linkedin_page = project.websites.changed_today.find_by(website_type: :linkedin) %>
-        <h4>
+        <h5>
           <%= project.name %>
-        </h4>
+        </h5>
       <% if projects_page.present? %>
         <li>
           Projects Page: <a href="<%= projects_page.url %>"><%= projects_page.url %></a>
+          <%= link_to 'View', website_path(projects_page), class: 'btn btn-secondary' %>
         </li>
       <% end %>
       <% if jobs_page.present? %>
         <li>
           Jobs Page: <a href="<%= jobs_page.url %>"><%= jobs_page.url %></a>
+          <%= link_to 'View', website_path(jobs_page), class: 'btn btn-secondary' %>
         </li>
       <% end %>
       <% if news_page.present? %>
         <li>
           News Page: <a href="<%= news_page.url %>"><%= news_page.url %></a>
+          <%= link_to 'View', website_path(news_page), class: 'btn btn-secondary' %>
         </li>
       <% end %>
-      <% if linkedin_page.present? %>
+      <% if false #linkedin_page.present? %>
         <li>
           LinkedIn Page: <a href="<%= linkedin_page.url %>"><%= linkedin_page.url %></a>
+          <%= link_to 'View', website_path(linkedin_page), class: 'btn btn-secondary' %>
         </li>
       <% end %>
+    <% end %>
+  </ul>
+
+  <h3>Websites that couldn't be verified</h3>
+  <ul>
+    <% @errored_websites.each do |website| %>
+      <li>
+        <%= "#{website.project.name}'s #{website.website_type} page:" %> <a href='<%= website.url %>'><%= website.url %></a>
+      </li>
     <% end %>
   </ul>
 <% else %>

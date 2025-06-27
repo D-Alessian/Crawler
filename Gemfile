@@ -58,6 +58,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem 'hotwire-livereload'
 end
 
 group :test do
@@ -74,7 +76,7 @@ gem 'pundit'
 gem 'devise'
 
 gem 'bootstrap', '~> 5.3.1'
-gem 'sassc-rails', '~> 2.1'
+gem 'sassc-rails'
 gem 'font-awesome-sass', '~> 6.5.2'
 gem 'simple_form', '~> 5.1'
 
@@ -87,3 +89,5 @@ gem 'dotenv-rails'
 
 gem 'sidekiq'
 gem 'sidekiq-cron'
+
+gem 'diff-lcs'

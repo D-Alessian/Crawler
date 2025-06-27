@@ -1,0 +1,19 @@
+.diff-added {
+  background-color: #e6ffed; 
+  color: #2c662d;
+}
+
+.diff-removed {
+  background-color: #ffe6e6; 
+  color: #662d2d; 
+}
+
+.diff-unchanged {
+  background-color: #f0f0f0; 
+  color: #333;
+}
+
+.diff-container {
+  font-family: monospace;
+  white-space: pre-wrap;
+}
